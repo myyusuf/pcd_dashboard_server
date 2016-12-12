@@ -1,4 +1,4 @@
-package id.co.wika.pcd;
+package id.co.wika.pcd.dashboard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
