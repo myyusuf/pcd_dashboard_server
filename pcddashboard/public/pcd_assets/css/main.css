@@ -4,7 +4,8 @@ body, #header, #top-menu, #menu, #footer, #content {
   padding:0;
 }
 #header {
-  background-color: #f1f3fa;
+  /* background-color: #f1f3fa; */
+  background-color: #F4F4F4;
   /*background-color: #f0f0f0;*/
   top:0;
   left:0;
