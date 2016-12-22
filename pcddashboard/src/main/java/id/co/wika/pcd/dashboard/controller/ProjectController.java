@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,4 +44,27 @@ public class ProjectController {
 		response.setTotalRecords(list.size());
         return response;
     }
+	
+	@RequestMapping(value="/projects/{code}", method=RequestMethod.PUT)
+    @ResponseBody 
+    Map<String, String> update(@PathVariable("code") String code, @RequestBody Project project) {
+		
+		Project localProject = projectService.getByCode(code);
+		localProject.setName(project.getName());
+		localProject.setDescription(project.getDescription());
+		projectService.update(localProject);
+		
+        return ResponseHelper.responseSuccess();
+    }
+	
+	@RequestMapping(value="/projects/{code}", method=RequestMethod.DELETE)
+    @ResponseBody 
+    Map<String, String> delete(@PathVariable("code") String code) {
+		
+		Project project = projectService.getByCode(code);
+		projectService.delete(project);
+		
+        return ResponseHelper.responseSuccess();
+    }
+	
 }

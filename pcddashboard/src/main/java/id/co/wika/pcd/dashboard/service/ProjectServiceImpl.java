@@ -21,19 +21,22 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public void update(Project project) {
-		// TODO Auto-generated method stub
-
+		projectDao.update(project);
 	}
 
 	@Override
 	public void delete(Project project) {
-		// TODO Auto-generated method stub
-
+		projectDao.delete(project); 
 	}
 
 	@Override
 	public List<Project> list() {
 		return projectDao.getAll();
+	}
+
+	@Override
+	public Project getByCode(String code) {
+		return projectDao.getByCode(code);
 	}
 
 }

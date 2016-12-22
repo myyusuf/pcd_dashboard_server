@@ -1004,11 +1004,13 @@
 
 	var _AddProjectWindow2 = _interopRequireDefault(_AddProjectWindow);
 
+	var _EditProjectWindow = __webpack_require__(20);
+
+	var _EditProjectWindow2 = _interopRequireDefault(_EditProjectWindow);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	// import EditProjectWindow from '../project/EditProjectWindow';
 
 	var ProjectList = function () {
 	  function ProjectList() {
@@ -1055,7 +1057,7 @@
 	        source: source,
 	        onSearch: onSearch,
 	        onRowDoubleClick: function onRowDoubleClick(data) {
-	          var editProjectWindow = new EditProjectWindow({
+	          var editProjectWindow = new _EditProjectWindow2.default({
 	            data: data,
 	            onSaveSuccess: function onSaveSuccess() {
 	              _this.dataGrid.refresh();
@@ -1247,11 +1249,11 @@
 
 	var _TextBox2 = _interopRequireDefault(_TextBox);
 
-	var _TextArea = __webpack_require__(19);
+	var _TextArea = __webpack_require__(18);
 
 	var _TextArea2 = _interopRequireDefault(_TextArea);
 
-	var _Label = __webpack_require__(18);
+	var _Label = __webpack_require__(19);
 
 	var _Label2 = _interopRequireDefault(_Label);
 
@@ -1326,7 +1328,7 @@
 	    this.window = new _AddWindow2.default({
 	      width: 390,
 	      height: 250,
-	      title: 'Tambah Siswa',
+	      title: 'Add Project',
 	      content: form,
 	      onSave: function onSave() {
 	        form.validate();
@@ -1663,60 +1665,6 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var Label = function () {
-	  function Label(options) {
-	    _classCallCheck(this, Label);
-
-	    this.id = (0, _Utils.guid)();
-	    this.text = options.text;
-	    this.bold = options.bold;
-	  }
-
-	  _createClass(Label, [{
-	    key: 'render',
-	    value: function render(container) {
-
-	      var _this = this;
-
-	      var labelContainer = $('<span>' + this.text + '</span>');
-	      labelContainer.appendTo(container);
-	      if (this.bold) {
-	        labelContainer.css('font-weight', 'bold');
-	      }
-	    }
-	  }, {
-	    key: 'getId',
-	    value: function getId() {
-	      return this.id;
-	    }
-	  }, {
-	    key: 'getValue',
-	    value: function getValue() {
-	      return this.text;
-	    }
-	  }]);
-
-	  return Label;
-	}();
-
-	exports.default = Label;
-
-/***/ },
-/* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _Utils = __webpack_require__(3);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 	var TextArea = function () {
 	  function TextArea(options) {
 	    _classCallCheck(this, TextArea);
@@ -1789,6 +1737,392 @@
 	}();
 
 	exports.default = TextArea;
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Utils = __webpack_require__(3);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Label = function () {
+	  function Label(options) {
+	    _classCallCheck(this, Label);
+
+	    this.id = (0, _Utils.guid)();
+	    this.text = options.text;
+	    this.bold = options.bold;
+	  }
+
+	  _createClass(Label, [{
+	    key: 'render',
+	    value: function render(container) {
+
+	      var _this = this;
+
+	      var labelContainer = $('<span>' + this.text + '</span>');
+	      labelContainer.appendTo(container);
+	      if (this.bold) {
+	        labelContainer.css('font-weight', 'bold');
+	      }
+	    }
+	  }, {
+	    key: 'getId',
+	    value: function getId() {
+	      return this.id;
+	    }
+	  }, {
+	    key: 'getValue',
+	    value: function getValue() {
+	      return this.text;
+	    }
+	  }]);
+
+	  return Label;
+	}();
+
+	exports.default = Label;
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Utils = __webpack_require__(3);
+
+	var _Button = __webpack_require__(8);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _Form = __webpack_require__(16);
+
+	var _Form2 = _interopRequireDefault(_Form);
+
+	var _EditWindow = __webpack_require__(21);
+
+	var _EditWindow2 = _interopRequireDefault(_EditWindow);
+
+	var _TextBox = __webpack_require__(11);
+
+	var _TextBox2 = _interopRequireDefault(_TextBox);
+
+	var _TextArea = __webpack_require__(18);
+
+	var _TextArea2 = _interopRequireDefault(_TextArea);
+
+	var _Label = __webpack_require__(19);
+
+	var _Label2 = _interopRequireDefault(_Label);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var EditProjectWindow = function () {
+	  function EditProjectWindow(options) {
+	    _classCallCheck(this, EditProjectWindow);
+
+	    var _this = this;
+
+	    this.id = (0, _Utils.guid)();
+
+	    var project = options.data;
+	    this.onSaveSuccess = options.onSaveSuccess;
+
+	    var codeTextBox = new _TextBox2.default({ value: project.code, height: 25, width: '90%' });
+	    var nameTextBox = new _TextBox2.default({ value: project.name, height: 25, width: '90%' });
+	    var descriptionTextBox = new _TextArea2.default({ value: project.description, height: 80, width: '92%' });
+
+	    var formItems = [{
+	      name: 'code',
+	      label: 'Code',
+	      content: codeTextBox,
+	      validation: {
+	        type: 'TEXTBOX',
+	        rule: 'required'
+	      }
+	    }, {
+	      name: 'name',
+	      label: 'Name',
+	      content: nameTextBox,
+	      validation: {
+	        type: 'TEXTBOX',
+	        rule: 'required'
+	      }
+	    }, {
+	      name: 'description',
+	      label: 'Description',
+	      content: descriptionTextBox
+	    }];
+	    var formOptions = {
+	      items: formItems,
+	      labelColumnWidth: '120px',
+	      onValidationSuccess: function onValidationSuccess(formValue) {
+	        $.ajax({
+	          method: "PUT",
+	          url: "/projects/" + project.code,
+	          data: JSON.stringify(formValue),
+	          beforeSend: function beforeSend(xhr) {
+	            xhr.setRequestHeader('Accept', 'application/json');
+	            xhr.setRequestHeader('Content-Type', 'application/json');
+	          }
+	        }).done(function () {
+	          $("#successNotification").jqxNotification("open");
+	          _this.window.close();
+	          if (_this.onSaveSuccess) {
+	            _this.onSaveSuccess();
+	          }
+	        }).fail(function (jqXHR, textStatus, errorThrown) {
+	          var errorMessage = 'Proses gagal. Status : ' + jqXHR.status + ' [' + jqXHR.statusText + '] : ' + jqXHR.responseText;
+	          $("#errorNotification").html('<div>' + errorMessage + '</div>');
+	          $("#errorNotification").jqxNotification("open");
+	        });
+	      }
+	    };
+
+	    var form = new _Form2.default(formOptions);
+
+	    this.window = new _EditWindow2.default({
+	      width: 390,
+	      height: 250,
+	      title: 'Edit Project',
+	      content: form,
+	      onSave: function onSave() {
+	        form.validate();
+	      },
+	      onCancel: function onCancel() {
+	        _this.window.close();
+	      },
+	      onDelete: function onDelete() {
+	        var r = confirm("Proses hapus data akan dilakukan!");
+	        if (r == true) {
+	          $.ajax({
+	            method: "DELETE",
+	            url: "/projects/" + project.code,
+	            data: {}
+	          }).done(function () {
+	            $("#successNotification").jqxNotification("open");
+	            _this.window.close();
+	            if (_this.onSaveSuccess) {
+	              _this.onSaveSuccess();
+	            }
+	          }).fail(function () {
+	            var errorMessage = 'Proses gagal. Status : ' + jqXHR.status + ' [' + jqXHR.statusText + '] : ' + jqXHR.responseText;
+	            $("#errorNotification").html('<div>' + errorMessage + '</div>');
+	            $("#errorNotification").jqxNotification("open");
+	          });
+	        }
+	      }
+	    });
+	  }
+
+	  _createClass(EditProjectWindow, [{
+	    key: 'render',
+	    value: function render(container) {
+	      var _this = this;
+	      this.window.render(container);
+	    }
+	  }, {
+	    key: 'open',
+	    value: function open() {
+	      this.window.open();
+	    }
+	  }]);
+
+	  return EditProjectWindow;
+	}();
+
+	exports.default = EditProjectWindow;
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Utils = __webpack_require__(3);
+
+	var _Button = __webpack_require__(8);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var EditWindow = function () {
+	  function EditWindow(options) {
+	    _classCallCheck(this, EditWindow);
+
+	    this.id = (0, _Utils.guid)();
+	    this.content = options.content;
+
+	    if (options.title) {
+	      this.title = options.title;
+	    } else {
+	      this.title = '';
+	    }
+
+	    if (options.width) {
+	      this.width = options.width;
+	    }
+
+	    if (options.height) {
+	      this.height = options.height;
+	    }
+
+	    if (options.buttons) {} else {
+	      this.deleteButton = new _Button2.default({
+	        title: 'Delete',
+	        template: 'danger',
+	        onClick: function onClick() {
+	          if (options.onDelete) {
+	            options.onDelete();
+	          }
+	        }
+	      });
+
+	      this.saveButton = new _Button2.default({
+	        title: 'Save',
+	        template: 'success',
+	        onClick: function onClick() {
+	          if (options.onSave) {
+	            options.onSave();
+	          }
+	        }
+	      });
+
+	      this.cancelButton = new _Button2.default({
+	        title: 'Cancel',
+	        onClick: function onClick() {
+	          if (options.onCancel) {
+	            options.onCancel();
+	          }
+	        }
+	      });
+	    }
+	  }
+
+	  _createClass(EditWindow, [{
+	    key: 'render',
+	    value: function render(container) {
+
+	      var _this = this;
+
+	      var windowContainer = $('<div></div>');
+	      windowContainer.appendTo(container);
+
+	      windowContainer.attr('id', this.id);
+
+	      var windowTitle = $('<div>' + this.title + '</div>');
+	      windowTitle.appendTo(windowContainer);
+
+	      var windowContent = $('<div></div>');
+	      windowContent.appendTo(windowContainer);
+
+	      var windowOptions = {
+	        theme: 'metro',
+	        isModal: true,
+	        autoOpen: false
+	      };
+
+	      if (this.width) {
+	        windowOptions['width'] = this.width;
+	      }
+
+	      if (this.height) {
+	        windowOptions['height'] = this.height;
+	      }
+
+	      windowContainer.jqxWindow(windowOptions);
+
+	      windowContainer.on('close', function (event) {
+	        windowContainer.jqxWindow('destroy');
+	      });
+
+	      var table = $('<table style="height: 100%; width: 100%;"></table>');
+	      var tr = $('<tr></tr>');
+	      var td = $('<td></td>');
+	      table.appendTo(windowContent);
+	      tr.appendTo(table);
+	      td.appendTo(tr);
+	      this.content.render(td);
+
+	      tr = $('<tr></tr>');
+	      td = $('<td></td>');
+	      tr.appendTo(table);
+	      td.appendTo(tr);
+
+	      var innerTable = $('<table style="height: 100%; width: 100%;"></table>');
+	      var innerTr = $('<tr></tr>');
+	      var innerTd = $('<td style="width: 90%;"></td>');
+	      innerTable.appendTo(td);
+	      innerTr.appendTo(innerTable);
+	      innerTd.appendTo(innerTr);
+
+	      innerTd = $('<td></td>');
+	      innerTd.appendTo(innerTr);
+	      innerTd.css('padding-right', '20px');
+	      this.deleteButton.render(innerTd);
+
+	      innerTd = $('<td></td>');
+	      innerTd.appendTo(innerTr);
+	      this.cancelButton.render(innerTd);
+
+	      innerTd = $('<td></td>');
+	      innerTd.appendTo(innerTr);
+	      this.saveButton.render(innerTd);
+
+	      this.windowContainer = windowContainer;
+	    }
+	  }, {
+	    key: 'getId',
+	    value: function getId() {
+	      return this.id;
+	    }
+	  }, {
+	    key: 'open',
+	    value: function open() {
+	      this.windowContainer.jqxWindow('open');
+	    }
+	  }, {
+	    key: 'close',
+	    value: function close() {
+	      this.windowContainer.jqxWindow('close');
+	    }
+	  }, {
+	    key: 'destroy',
+	    value: function destroy() {
+	      this.windowContainer.jqxWindow('destroy');
+	    }
+	  }]);
+
+	  return EditWindow;
+	}();
+
+	exports.default = EditWindow;
 
 /***/ }
 /******/ ]);
