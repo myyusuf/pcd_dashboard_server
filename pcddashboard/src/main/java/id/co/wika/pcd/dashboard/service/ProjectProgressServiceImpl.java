@@ -17,7 +17,6 @@ public class ProjectProgressServiceImpl implements ProjectProgressService {
 	@Override
 	public void create(ProjectProgress projectProgress) {
 		projectProgressDao.create(projectProgress);
-
 	}
 
 	@Override
@@ -28,6 +27,11 @@ public class ProjectProgressServiceImpl implements ProjectProgressService {
 	@Override
 	public ProjectProgress getByCodeMonthYear(String code, int month, int year) {
 		return projectProgressDao.getByCodeMonthYear(code, month, year);
+	}
+
+	@Override
+	public void update(ProjectProgress projectProgress) {
+		projectProgressDao.update(projectProgress);
 	}
 
 }

@@ -26,8 +26,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import id.co.wika.pcd.dashboard.ResponseHelper;
 import id.co.wika.pcd.dashboard.dto.ResponseDto;
+import id.co.wika.pcd.dashboard.model.Project;
 import id.co.wika.pcd.dashboard.model.ProjectProgress;
 import id.co.wika.pcd.dashboard.service.ProjectProgressService;
+import id.co.wika.pcd.dashboard.service.ProjectService;
 
 @RestController
 @EnableAutoConfiguration
@@ -36,6 +38,9 @@ public class ProjectProgressController {
 	
 	@Autowired
 	private ProjectProgressService projectProgressService;
+	
+	@Autowired
+	private ProjectService projectService;
 	
 	@RequestMapping(value="/project_progress")
     @ResponseBody
@@ -107,6 +112,8 @@ public class ProjectProgressController {
 	}
 	
 	private void parseProjectByMonth(Iterator<Row> rowIterator, int month){
+		
+		int YEAR = 2016;
 		
 		int projectRowNum = 0;
 		String projectCode = "";
@@ -182,22 +189,60 @@ public class ProjectProgressController {
 							double realisasiLkTmp = cell11c.getNumericCellValue();
 							realisasiLk = BigDecimal.valueOf(realisasiLkTmp);
 							
-							System.out.println(
-									"Month : " + month +
-									", Project code : " + projectCode + 
-									", Project name :" + projectName +
-									", RKAP OK : " + rkapOk.toPlainString() +
-									", RKAP OP : " + rkapOp.toPlainString() +
-									", RKAP LK : " + rkapLk.toPlainString() +
+//							System.out.println(
+//									"Month : " + month +
+//									", Project code : " + projectCode + 
+//									", Project name :" + projectName +
+//									", RKAP OK : " + rkapOk.toPlainString() +
+//									", RKAP OP : " + rkapOp.toPlainString() +
+//									", RKAP LK : " + rkapLk.toPlainString() +
+//									
+//									", Prognosa OK : " + prognosaOk.toPlainString() +
+//									", Prognosa OP : " + prognosaOp.toPlainString() +
+//									", Prognosa LK : " + prognosaLk.toPlainString() +
+//									
+//									", Realisasi OK : " + realisasiOk.toPlainString() +
+//									", Realisasi OP : " + realisasiOp.toPlainString() +
+//									", Realisasi LK : " + realisasiLk.toPlainString()
+//									);
+							Project project = projectService.getByCode(projectCode);
+							if(project != null){
+								ProjectProgress projectProgress = projectProgressService.getByCodeMonthYear(projectCode, month, YEAR);
+								if(projectProgress != null){
+									projectProgress.setRkapOk(rkapOk);
+									projectProgress.setRkapOp(rkapOp);
+									projectProgress.setRkapLk(rkapLk);
 									
-									", Prognosa OK : " + prognosaOk.toPlainString() +
-									", Prognosa OP : " + prognosaOp.toPlainString() +
-									", Prognosa LK : " + prognosaLk.toPlainString() +
+									projectProgress.setPrognosaOk(prognosaOk);
+									projectProgress.setPrognosaOp(prognosaOp);
+									projectProgress.setPrognosaLk(prognosaLk);
 									
-									", Realisasi OK : " + realisasiOk.toPlainString() +
-									", Realisasi OP : " + realisasiOp.toPlainString() +
-									", Realisasi LK : " + realisasiLk.toPlainString()
-									);
+									projectProgress.setRealisasiOk(realisasiOk);
+									projectProgress.setRealisasiOp(realisasiOp);
+									projectProgress.setRealisasiLk(realisasiLk);
+									
+									projectProgressService.update(projectProgress);
+								}else{
+									projectProgress = new ProjectProgress();
+									projectProgress.setMonth(month);
+									projectProgress.setYear(YEAR);
+									
+									projectProgress.setRkapOk(rkapOk);
+									projectProgress.setRkapOp(rkapOp);
+									projectProgress.setRkapLk(rkapLk);
+									
+									projectProgress.setPrognosaOk(prognosaOk);
+									projectProgress.setPrognosaOp(prognosaOp);
+									projectProgress.setPrognosaLk(prognosaLk);
+									
+									projectProgress.setRealisasiOk(realisasiOk);
+									projectProgress.setRealisasiOp(realisasiOp);
+									projectProgress.setRealisasiLk(realisasiLk);
+									
+									projectProgressService.create(projectProgress);
+								}							
+							}
+							
 							break;
 						case 3:
 							projectRowNum = -1;
