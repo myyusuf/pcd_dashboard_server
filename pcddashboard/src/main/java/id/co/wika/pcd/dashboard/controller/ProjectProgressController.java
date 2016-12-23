@@ -81,7 +81,17 @@ public class ProjectProgressController {
 		XSSFSheet sheet = workbook.getSheet("INPUTAN");
 		
 		//Iterate through each rows from first sheet
-		Iterator<Row> rowIterator = sheet.iterator();
+//		Iterator<Row> rowIterator = sheet.iterator();
+		
+		for(int i=1; i<=12; i++){
+			parseProjectByMonth(sheet.iterator(), i);
+		}
+		
+		file.close();
+		
+	}
+	
+	private void parseProjectByMonth(Iterator<Row> rowIterator, int month){
 		
 		int projectRowNum = 0;
 		String projectCode = "";
@@ -98,6 +108,8 @@ public class ProjectProgressController {
 		BigDecimal realisasiOp = new BigDecimal("0.0");
 		BigDecimal realisasiLk = new BigDecimal("0.0");
 		
+		int cellMonthPositionInit = 3 * (month - 1);
+		
 		while(rowIterator.hasNext()) {
 			Row row = rowIterator.next();
 			
@@ -113,49 +125,51 @@ public class ProjectProgressController {
 							Cell cell4 = row.getCell(4);
 							projectName = cell4.getStringCellValue();
 							
-							Cell cell9 = row.getCell(9);
+							Cell cell9 = row.getCell(cellMonthPositionInit + 9);
 							double rkapOkTmp = cell9.getNumericCellValue();
 							rkapOk = BigDecimal.valueOf(rkapOkTmp);
 							
-							Cell cell10 = row.getCell(10);
+							Cell cell10 = row.getCell(cellMonthPositionInit + 10);
 							double rkapOpTmp = cell10.getNumericCellValue();
 							rkapOp = BigDecimal.valueOf(rkapOpTmp);
 							
-							Cell cell11 = row.getCell(11);
+							Cell cell11 = row.getCell(cellMonthPositionInit + 11);
 							double rkapLkTmp = cell11.getNumericCellValue();
 							rkapLk = BigDecimal.valueOf(rkapLkTmp);
 							
 							break;
 						case 1:
 							
-							Cell cell9b = row.getCell(9);
+							Cell cell9b = row.getCell(cellMonthPositionInit + 9);
 							double prognosaOkTmp = cell9b.getNumericCellValue();
 							prognosaOk = BigDecimal.valueOf(prognosaOkTmp);
 							
-							Cell cell10b = row.getCell(10);
+							Cell cell10b = row.getCell(cellMonthPositionInit + 10);
 							double prognosaOpTmp = cell10b.getNumericCellValue();
 							prognosaOp = BigDecimal.valueOf(prognosaOpTmp);
 							
-							Cell cell11b = row.getCell(11);
+							Cell cell11b = row.getCell(cellMonthPositionInit + 11);
 							double prognosaLkTmp = cell11b.getNumericCellValue();
 							prognosaLk = BigDecimal.valueOf(prognosaLkTmp);
 							
 							break;
 						case 2:
 							
-							Cell cell9c = row.getCell(9);
+							Cell cell9c = row.getCell(cellMonthPositionInit + 9);
 							double realisasiOkTmp = cell9c.getNumericCellValue();
 							realisasiOk = BigDecimal.valueOf(realisasiOkTmp);
 							
-							Cell cell10c = row.getCell(10);
+							Cell cell10c = row.getCell(cellMonthPositionInit + 10);
 							double realisasiOpTmp = cell10c.getNumericCellValue();
 							realisasiOp = BigDecimal.valueOf(realisasiOpTmp);
 							
-							Cell cell11c = row.getCell(11);
+							Cell cell11c = row.getCell(cellMonthPositionInit + 11);
 							double realisasiLkTmp = cell11c.getNumericCellValue();
 							realisasiLk = BigDecimal.valueOf(realisasiLkTmp);
 							
-							System.out.println("Project code : " + projectCode + 
+							System.out.println(
+									"Month : " + month +
+									", Project code : " + projectCode + 
 									", Project name :" + projectName +
 									", RKAP OK : " + rkapOk.toPlainString() +
 									", RKAP OP : " + rkapOp.toPlainString() +
@@ -202,9 +216,6 @@ public class ProjectProgressController {
 //			}
 			
 		}
-		
-		file.close();
-		
 	}
 
 }
