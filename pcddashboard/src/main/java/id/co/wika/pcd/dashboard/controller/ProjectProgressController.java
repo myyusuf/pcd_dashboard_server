@@ -90,6 +90,14 @@ public class ProjectProgressController {
 		BigDecimal rkapOp = new BigDecimal("0.0");
 		BigDecimal rkapLk = new BigDecimal("0.0");
 		
+		BigDecimal prognosaOk = new BigDecimal("0.0");
+		BigDecimal prognosaOp = new BigDecimal("0.0");
+		BigDecimal prognosaLk = new BigDecimal("0.0");
+		
+		BigDecimal realisasiOk = new BigDecimal("0.0");
+		BigDecimal realisasiOp = new BigDecimal("0.0");
+		BigDecimal realisasiLk = new BigDecimal("0.0");
+		
 		while(rowIterator.hasNext()) {
 			Row row = rowIterator.next();
 			
@@ -120,13 +128,46 @@ public class ProjectProgressController {
 							break;
 						case 1:
 							
+							Cell cell9b = row.getCell(9);
+							double prognosaOkTmp = cell9b.getNumericCellValue();
+							prognosaOk = BigDecimal.valueOf(prognosaOkTmp);
+							
+							Cell cell10b = row.getCell(10);
+							double prognosaOpTmp = cell10b.getNumericCellValue();
+							prognosaOp = BigDecimal.valueOf(prognosaOpTmp);
+							
+							Cell cell11b = row.getCell(11);
+							double prognosaLkTmp = cell11b.getNumericCellValue();
+							prognosaLk = BigDecimal.valueOf(prognosaLkTmp);
+							
 							break;
 						case 2:
+							
+							Cell cell9c = row.getCell(9);
+							double realisasiOkTmp = cell9c.getNumericCellValue();
+							realisasiOk = BigDecimal.valueOf(realisasiOkTmp);
+							
+							Cell cell10c = row.getCell(10);
+							double realisasiOpTmp = cell10c.getNumericCellValue();
+							realisasiOp = BigDecimal.valueOf(realisasiOpTmp);
+							
+							Cell cell11c = row.getCell(11);
+							double realisasiLkTmp = cell11c.getNumericCellValue();
+							realisasiLk = BigDecimal.valueOf(realisasiLkTmp);
+							
 							System.out.println("Project code : " + projectCode + 
 									", Project name :" + projectName +
 									", RKAP OK : " + rkapOk.toPlainString() +
 									", RKAP OP : " + rkapOp.toPlainString() +
-									", RKAP LK : " + rkapLk.toPlainString()
+									", RKAP LK : " + rkapLk.toPlainString() +
+									
+									", Prognosa OK : " + prognosaOk.toPlainString() +
+									", Prognosa OP : " + prognosaOp.toPlainString() +
+									", Prognosa LK : " + prognosaLk.toPlainString() +
+									
+									", Realisasi OK : " + realisasiOk.toPlainString() +
+									", Realisasi OP : " + realisasiOp.toPlainString() +
+									", Realisasi LK : " + realisasiLk.toPlainString()
 									);
 							break;
 						case 3:
@@ -136,6 +177,14 @@ public class ProjectProgressController {
 							rkapOk = new BigDecimal("0.0");
 							rkapOp = new BigDecimal("0.0");
 							rkapLk = new BigDecimal("0.0");
+							
+							prognosaOk = new BigDecimal("0.0");
+							prognosaOp = new BigDecimal("0.0");
+							prognosaLk = new BigDecimal("0.0");
+							
+							realisasiOk = new BigDecimal("0.0");
+							realisasiOp = new BigDecimal("0.0");
+							realisasiLk = new BigDecimal("0.0");
 							break;
 					}	
 				}
