@@ -2230,14 +2230,14 @@
 	        source: source,
 	        onSearch: onSearch,
 	        onRowDoubleClick: function onRowDoubleClick(data) {
-	          var editProjectWindow = new _EditProjectWindow2.default({
-	            data: data,
-	            onSaveSuccess: function onSaveSuccess() {
-	              _this.dataGrid.refresh();
-	            }
-	          });
-	          editProjectWindow.render($('#dialogWindowContainer'));
-	          editProjectWindow.open();
+	          // var editProjectWindow = new EditProjectWindow({
+	          //   data: data,
+	          //   onSaveSuccess: function(){
+	          //     _this.dataGrid.refresh();
+	          //   }
+	          // });
+	          // editProjectWindow.render($('#dialogWindowContainer'));
+	          // editProjectWindow.open();
 	        },
 	        dataGridOptions: dataGridOptions
 	      });
