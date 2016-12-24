@@ -26,7 +26,14 @@ public class ProjectProgressServiceImpl implements ProjectProgressService {
 
 	@Override
 	public ProjectProgress getByCodeMonthYear(String code, int month, int year) {
-		return projectProgressDao.getByCodeMonthYear(code, month, year);
+		ProjectProgress projectProgress = null;
+		try{
+			projectProgress = projectProgressDao.getByCodeMonthYear(code, month, year);
+		}catch(Exception e){
+			System.out.println("Project progress not found");
+		}
+				
+		return projectProgress;
 	}
 
 	@Override

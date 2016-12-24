@@ -36,7 +36,14 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public Project getByCode(String code) {
-		return projectDao.getByCode(code);
+		Project project = null;
+		try{
+			project = projectDao.getByCode(code);
+		}catch(Exception e){
+			System.out.println("Project not found : '" + code + "'");	
+		}
+		
+		return project;
 	}
 
 }

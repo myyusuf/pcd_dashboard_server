@@ -80,7 +80,7 @@
 
 	var _ProjectList2 = _interopRequireDefault(_ProjectList);
 
-	var _ProjectProgressList = __webpack_require__(24);
+	var _ProjectProgressList = __webpack_require__(22);
 
 	var _ProjectProgressList2 = _interopRequireDefault(_ProjectProgressList);
 
@@ -1196,7 +1196,8 @@
 	      this.dataGridOptions['source'] = dataAdapter;
 	      this.dataGridOptions['altrows'] = true;
 	      this.dataGridOptions['columnsresize'] = true;
-	      // this.dataGridOptions['pagesizeoptions'] = ['50', '100', '500'];
+	      this.dataGridOptions['pagesizeoptions'] = ['50', '100', '500'];
+	      this.dataGridOptions['pagesize'] = '50';
 
 	      var dataGridContainer = $('<div style="height: 100%"></div>');
 	      dataGridContainer.appendTo(container);
@@ -2137,7 +2138,176 @@
 	exports.default = EditWindow;
 
 /***/ },
-/* 22 */,
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Utils = __webpack_require__(3);
+
+	var _Button = __webpack_require__(8);
+
+	var _Button2 = _interopRequireDefault(_Button);
+
+	var _ToggleButton = __webpack_require__(10);
+
+	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
+
+	var _TextBox = __webpack_require__(11);
+
+	var _TextBox2 = _interopRequireDefault(_TextBox);
+
+	var _DataGrid = __webpack_require__(14);
+
+	var _DataGrid2 = _interopRequireDefault(_DataGrid);
+
+	var _FileUpload = __webpack_require__(23);
+
+	var _FileUpload2 = _interopRequireDefault(_FileUpload);
+
+	var _AddProjectWindow = __webpack_require__(15);
+
+	var _AddProjectWindow2 = _interopRequireDefault(_AddProjectWindow);
+
+	var _EditProjectWindow = __webpack_require__(20);
+
+	var _EditProjectWindow2 = _interopRequireDefault(_EditProjectWindow);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var ProjectProgressList = function () {
+	  function ProjectProgressList() {
+	    _classCallCheck(this, ProjectProgressList);
+
+	    this.id = (0, _Utils.guid)();
+	  }
+
+	  _createClass(ProjectProgressList, [{
+	    key: 'render',
+	    value: function render(container) {
+
+	      var _this = this;
+
+	      var url = "/project_progress";
+
+	      var source = {
+	        datatype: "json",
+	        datafields: [{ name: 'id', type: 'int' }, { name: 'project' }, { name: 'project_code', type: 'string', map: 'project>code' }, { name: 'month', type: 'int' }, { name: 'year', type: 'int' }, { name: 'rkapOk', type: 'float' }, { name: 'rkapOp', type: 'float' }, { name: 'rkapLk', type: 'float' }, { name: 'prognosaOk', type: 'float' }, { name: 'prognosaOp', type: 'float' }, { name: 'prognosaLk', type: 'float' }, { name: 'realisasiOk', type: 'float' }, { name: 'realisasiOp', type: 'float' }, { name: 'realisasiLk', type: 'float' }, { name: 'description', type: 'string' }],
+	        id: "id",
+	        url: url
+	      };
+
+	      var onSearch = function onSearch(data) {
+	        data['searchTxt'] = searchTextBox.getValue();
+	        return data;
+	      };
+
+	      var columnWidth = 100 / 12 + '%';
+	      var dataGridOptions = {
+	        width: '100%',
+	        height: '100%',
+	        groupable: true,
+	        pageable: true,
+	        altrows: true,
+	        theme: 'metro',
+	        virtualmode: true,
+	        rendergridrows: function rendergridrows(params) {
+	          return params.data;
+	        },
+	        columns: [{ text: 'Project Code', datafield: 'project_code', width: columnWidth }, { text: 'Bulan', datafield: 'month', width: columnWidth }, { text: 'Tahun', datafield: 'year', width: columnWidth }, { text: 'RKAP OK', datafield: 'rkapOk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'RKAP OP', datafield: 'rkapOp', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'RKAP LK', datafield: 'rkapLk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Prognosa OK', datafield: 'prognosaOk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Prognosa OP', datafield: 'prognosaOp', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Prognosa LK', datafield: 'prognosaLk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Realisasi OK', datafield: 'realisasiOk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Realisasi OP', datafield: 'realisasiOp', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Realisasi LK', datafield: 'realisasiLk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }],
+	        groups: ['project_code']
+	      };
+
+	      this.dataGrid = new _DataGrid2.default({
+	        source: source,
+	        onSearch: onSearch,
+	        onRowDoubleClick: function onRowDoubleClick(data) {
+	          var editProjectWindow = new _EditProjectWindow2.default({
+	            data: data,
+	            onSaveSuccess: function onSaveSuccess() {
+	              _this.dataGrid.refresh();
+	            }
+	          });
+	          editProjectWindow.render($('#dialogWindowContainer'));
+	          editProjectWindow.open();
+	        },
+	        dataGridOptions: dataGridOptions
+	      });
+
+	      var searchTextBox = new _TextBox2.default({ placeHolder: 'Kode atau Nama', width: 250, height: 24 });
+	      var searchButton = new _Button2.default({
+	        imgSrc: '/pcd_assets/images/search.png',
+	        theme: 'metro',
+	        width: 30,
+	        height: 26,
+	        onClick: function onClick() {
+	          _this.dataGrid.refresh();
+	        }
+	      });
+
+	      var fileUpload = new _FileUpload2.default({ height: 35, width: 103, uploadUrl: '/project_progress/upload', fileInputName: 'progress' });
+
+	      var uploadButton = new _Button2.default({
+	        title: 'Upload',
+	        template: 'primary',
+	        height: 26,
+	        onClick: function onClick() {
+	          fileUpload.uploadFile();
+	        }
+	      });
+
+	      var table = $('<table style="height: 100%; width: 100%; margin: -3px; "></table>');
+	      var tr = $('<tr></tr>');
+	      var td = $('<td style="padding: 0; height: 40px;"></td>');
+	      table.appendTo(container);
+	      tr.appendTo(table);
+	      td.appendTo(tr);
+
+	      var innerTable = $('<table style="height: 100%; width: 100%;"></table>');
+	      var innerTr = $('<tr></tr>');
+	      var innerTd = $('<td style="padding-top: 6px; padding-left: 10px; padding-right: 8px; width: 50px; height: 100%;"></td>');
+	      innerTable.appendTo(td);
+	      innerTr.appendTo(innerTable);
+	      innerTd.appendTo(innerTr);
+	      fileUpload.render(innerTd);
+
+	      innerTd = $('<td style="padding-top: 6px; width: 70px; height: 100%;"></td>');
+	      innerTd.appendTo(innerTr);
+	      uploadButton.render(innerTd);
+
+	      innerTd = $('<td style="padding-top: 6px; width: 200px; height: 100%;"></td>');
+	      innerTd.appendTo(innerTr);
+	      searchTextBox.render(innerTd);
+
+	      innerTd = $('<td style="padding-top: 6px; height: 100%; "></td>');
+	      var _tempContainer = $('<div style="margin-left: -5px;"></div>');
+	      _tempContainer.appendTo(innerTd);
+	      innerTd.appendTo(innerTr);
+	      searchButton.render(_tempContainer);
+
+	      tr = $('<tr></tr>');
+	      td = $('<td style="padding: 0;"></td>');
+	      tr.appendTo(table);
+	      td.appendTo(tr);
+
+	      this.dataGrid.render(td);
+	    }
+	  }]);
+
+	  return ProjectProgressList;
+	}();
+
+	exports.default = ProjectProgressList;
+
+/***/ },
 /* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2232,175 +2402,6 @@
 	}();
 
 	exports.default = FileUpload;
-
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _Utils = __webpack_require__(3);
-
-	var _Button = __webpack_require__(8);
-
-	var _Button2 = _interopRequireDefault(_Button);
-
-	var _ToggleButton = __webpack_require__(10);
-
-	var _ToggleButton2 = _interopRequireDefault(_ToggleButton);
-
-	var _TextBox = __webpack_require__(11);
-
-	var _TextBox2 = _interopRequireDefault(_TextBox);
-
-	var _DataGrid = __webpack_require__(14);
-
-	var _DataGrid2 = _interopRequireDefault(_DataGrid);
-
-	var _FileUpload = __webpack_require__(23);
-
-	var _FileUpload2 = _interopRequireDefault(_FileUpload);
-
-	var _AddProjectWindow = __webpack_require__(15);
-
-	var _AddProjectWindow2 = _interopRequireDefault(_AddProjectWindow);
-
-	var _EditProjectWindow = __webpack_require__(20);
-
-	var _EditProjectWindow2 = _interopRequireDefault(_EditProjectWindow);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var ProjectProgressList = function () {
-	  function ProjectProgressList() {
-	    _classCallCheck(this, ProjectProgressList);
-
-	    this.id = (0, _Utils.guid)();
-	  }
-
-	  _createClass(ProjectProgressList, [{
-	    key: 'render',
-	    value: function render(container) {
-
-	      var _this = this;
-
-	      var url = "/project_progress";
-
-	      var source = {
-	        datatype: "json",
-	        datafields: [{ name: 'id', type: 'int' }, { name: 'month', type: 'int' }, { name: 'year', type: 'int' }, { name: 'rkapOk', type: 'float' }, { name: 'rkapOp', type: 'float' }, { name: 'rkapLk', type: 'float' }, { name: 'prognosaOk', type: 'float' }, { name: 'prognosaOp', type: 'float' }, { name: 'prognosaLk', type: 'float' }, { name: 'realisasiOk', type: 'float' }, { name: 'realisasiOp', type: 'float' }, { name: 'realisasiLk', type: 'float' }, { name: 'description', type: 'string' }],
-	        id: "id",
-	        url: url
-	      };
-
-	      var onSearch = function onSearch(data) {
-	        data['searchTxt'] = searchTextBox.getValue();
-	        return data;
-	      };
-
-	      var columnWidth = 100 / 11 + '%';
-	      var dataGridOptions = {
-	        width: '100%',
-	        height: '100%',
-	        pageable: true,
-	        altrows: true,
-	        theme: 'metro',
-	        virtualmode: true,
-	        rendergridrows: function rendergridrows(params) {
-	          return params.data;
-	        },
-	        columns: [{ text: 'Bulan', datafield: 'month', width: columnWidth }, { text: 'Tahun', datafield: 'year', width: columnWidth }, { text: 'RKAP OK', datafield: 'rkapOk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'RKAP OP', datafield: 'rkapOp', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'RKAP LK', datafield: 'rkapLk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Prognosa OK', datafield: 'prognosaOk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Prognosa OP', datafield: 'prognosaOp', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Prognosa LK', datafield: 'prognosaLk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Realisasi OK', datafield: 'realisasiOk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Realisasi OP', datafield: 'realisasiOp', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }, { text: 'Realisasi LK', datafield: 'realisasiLk', width: columnWidth, cellsalign: 'right', cellsformat: 'd2' }],
-	        groups: []
-	      };
-
-	      this.dataGrid = new _DataGrid2.default({
-	        source: source,
-	        onSearch: onSearch,
-	        onRowDoubleClick: function onRowDoubleClick(data) {
-	          var editProjectWindow = new _EditProjectWindow2.default({
-	            data: data,
-	            onSaveSuccess: function onSaveSuccess() {
-	              _this.dataGrid.refresh();
-	            }
-	          });
-	          editProjectWindow.render($('#dialogWindowContainer'));
-	          editProjectWindow.open();
-	        },
-	        dataGridOptions: dataGridOptions
-	      });
-
-	      var searchTextBox = new _TextBox2.default({ placeHolder: 'Kode atau Nama', width: 250, height: 24 });
-	      var searchButton = new _Button2.default({
-	        imgSrc: '/pcd_assets/images/search.png',
-	        theme: 'metro',
-	        width: 30,
-	        height: 26,
-	        onClick: function onClick() {
-	          _this.dataGrid.refresh();
-	        }
-	      });
-
-	      var fileUpload = new _FileUpload2.default({ height: 35, width: 103, uploadUrl: '/project_progress/upload', fileInputName: 'progress' });
-
-	      var uploadButton = new _Button2.default({
-	        title: 'Upload',
-	        template: 'primary',
-	        height: 26,
-	        onClick: function onClick() {
-	          fileUpload.uploadFile();
-	        }
-	      });
-
-	      var table = $('<table style="height: 100%; width: 100%; margin: -3px; "></table>');
-	      var tr = $('<tr></tr>');
-	      var td = $('<td style="padding: 0; height: 40px;"></td>');
-	      table.appendTo(container);
-	      tr.appendTo(table);
-	      td.appendTo(tr);
-
-	      var innerTable = $('<table style="height: 100%; width: 100%;"></table>');
-	      var innerTr = $('<tr></tr>');
-	      var innerTd = $('<td style="padding-top: 6px; padding-left: 10px; padding-right: 8px; width: 50px; height: 100%;"></td>');
-	      innerTable.appendTo(td);
-	      innerTr.appendTo(innerTable);
-	      innerTd.appendTo(innerTr);
-	      fileUpload.render(innerTd);
-
-	      innerTd = $('<td style="padding-top: 6px; width: 70px; height: 100%;"></td>');
-	      innerTd.appendTo(innerTr);
-	      uploadButton.render(innerTd);
-
-	      innerTd = $('<td style="padding-top: 6px; width: 200px; height: 100%;"></td>');
-	      innerTd.appendTo(innerTr);
-	      searchTextBox.render(innerTd);
-
-	      innerTd = $('<td style="padding-top: 6px; height: 100%; "></td>');
-	      var _tempContainer = $('<div style="margin-left: -5px;"></div>');
-	      _tempContainer.appendTo(innerTd);
-	      innerTd.appendTo(innerTr);
-	      searchButton.render(_tempContainer);
-
-	      tr = $('<tr></tr>');
-	      td = $('<td style="padding: 0;"></td>');
-	      tr.appendTo(table);
-	      td.appendTo(tr);
-
-	      this.dataGrid.render(td);
-	    }
-	  }]);
-
-	  return ProjectProgressList;
-	}();
-
-	exports.default = ProjectProgressList;
 
 /***/ }
 /******/ ]);

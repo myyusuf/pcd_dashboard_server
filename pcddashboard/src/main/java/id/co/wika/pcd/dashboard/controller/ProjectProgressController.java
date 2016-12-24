@@ -142,10 +142,11 @@ public class ProjectProgressController {
 				if(cell2 != null){
 					switch (projectRowNum){
 						case 0:
-							projectCode = cell2.getStringCellValue();
+							projectCode = cell2.getStringCellValue() != null ? cell2.getStringCellValue().replaceAll("[^A-Za-z0-9]", "") : "";
 							
+							System.out.println("Project code : '" + projectCode + "'");
 							Cell cell4 = row.getCell(4);
-							projectName = cell4.getStringCellValue();
+							projectName = cell4.getStringCellValue() != null ? cell4.getStringCellValue().replaceAll("[^A-Za-z0-9]", "") : "";
 							
 							Cell cell9 = row.getCell(cellMonthPositionInit + 9);
 							double rkapOkTmp = cell9.getNumericCellValue();
@@ -224,6 +225,7 @@ public class ProjectProgressController {
 									projectProgressService.update(projectProgress);
 								}else{
 									projectProgress = new ProjectProgress();
+									projectProgress.setProject(project);
 									projectProgress.setMonth(month);
 									projectProgress.setYear(YEAR);
 									

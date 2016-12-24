@@ -50,7 +50,7 @@ public class ProjectProgressDao {
    */
   public ProjectProgress getByCodeMonthYear(String code, int month, int year) {
     return (ProjectProgress) entityManager.createQuery(
-        "from ProjectProgress where code = :code and month = :month and year = :year")
+        "from ProjectProgress where project.code = :code and month = :month and year = :year")
     	.setParameter("code", code)
     	.setParameter("month", month)
         .setParameter("year", year)
