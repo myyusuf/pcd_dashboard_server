@@ -80,7 +80,7 @@
 
 	var _ProjectList2 = _interopRequireDefault(_ProjectList);
 
-	var _ProjectProgressList = __webpack_require__(22);
+	var _ProjectProgressList = __webpack_require__(23);
 
 	var _ProjectProgressList2 = _interopRequireDefault(_ProjectProgressList);
 
@@ -1016,7 +1016,7 @@
 
 	var _AddProjectWindow2 = _interopRequireDefault(_AddProjectWindow);
 
-	var _EditProjectWindow = __webpack_require__(20);
+	var _EditProjectWindow = __webpack_require__(21);
 
 	var _EditProjectWindow2 = _interopRequireDefault(_EditProjectWindow);
 
@@ -1041,7 +1041,7 @@
 
 	      var source = {
 	        datatype: "json",
-	        datafields: [{ name: 'id', type: 'int' }, { name: 'code', type: 'string' }, { name: 'name', type: 'string' }, { name: 'description', type: 'string' }],
+	        datafields: [{ name: 'id', type: 'int' }, { name: 'code', type: 'string' }, { name: 'name', type: 'string' }, { name: 'projectType', type: 'int' }, { name: 'description', type: 'string' }],
 	        id: "id",
 	        url: url
 	      };
@@ -1270,6 +1270,10 @@
 
 	var _Label2 = _interopRequireDefault(_Label);
 
+	var _ProjectTypeComboBox = __webpack_require__(20);
+
+	var _ProjectTypeComboBox2 = _interopRequireDefault(_ProjectTypeComboBox);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1287,6 +1291,7 @@
 
 	    var codeTextBox = new _TextBox2.default({ height: 25, width: '90%' });
 	    var nameTextBox = new _TextBox2.default({ height: 25, width: '90%' });
+	    var projectTypeComboBox = new _ProjectTypeComboBox2.default({ height: 25, width: '80%' });
 	    var descriptionTextBox = new _TextArea2.default({ height: 80, width: '92%' });
 
 	    var formItems = [{
@@ -1303,6 +1308,14 @@
 	      content: nameTextBox,
 	      validation: {
 	        type: 'TEXTBOX',
+	        rule: 'required'
+	      }
+	    }, {
+	      name: 'projectType',
+	      label: 'Type',
+	      content: projectTypeComboBox,
+	      validation: {
+	        type: 'COMBOBOX',
 	        rule: 'required'
 	      }
 	    }, {
@@ -1340,7 +1353,7 @@
 
 	    this.window = new _AddWindow2.default({
 	      width: 390,
-	      height: 250,
+	      height: 280,
 	      title: 'Add Project',
 	      content: form,
 	      onSave: function onSave() {
@@ -1819,6 +1832,81 @@
 
 	var _Utils = __webpack_require__(3);
 
+	var _ComboBox = __webpack_require__(12);
+
+	var _ComboBox2 = _interopRequireDefault(_ComboBox);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var ProjectTypeComboBox = function () {
+	  function ProjectTypeComboBox(options) {
+	    _classCallCheck(this, ProjectTypeComboBox);
+
+	    var _this = this;
+
+	    this.id = (0, _Utils.guid)();
+
+	    var typeList = [{ id: '1', nama: 'Proyek Lama Non JO/Non KSO' }, { id: '2', nama: "Proyek Lama JO/KSO" }, { id: '3', nama: "Proyek Baru Sudah Diperoleh Non JO/Non KSO" }, { id: '4', nama: "Proyek Baru Sudah Diperoleh JO/KSO" }, { id: '5', nama: "Proyek Baru Dalam Pengusahaan Non JO/Non KSO" }, { id: '6', nama: "Proyek Baru Dalam Pengusahaan JO/KSO" }];
+	    var comboBoxOptions = {
+	      displayMember: "nama",
+	      valueMember: "id",
+	      selectedIndex: 0,
+	      width: '100%',
+	      height: 25,
+	      theme: 'metro',
+	      selectionMode: 'dropDownList'
+	    };
+
+	    this.comboBox = new _ComboBox2.default({
+	      localData: typeList,
+	      value: options.value,
+	      comboBoxOptions: comboBoxOptions,
+	      onChange: function onChange(value) {
+	        if (options.onChange) {
+	          options.onChange(value);
+	        }
+	      }
+	    });
+	  }
+
+	  _createClass(ProjectTypeComboBox, [{
+	    key: 'getId',
+	    value: function getId() {
+	      return this.comboBox.getId();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render(container) {
+	      this.comboBox.render(container);
+	    }
+	  }, {
+	    key: 'getValue',
+	    value: function getValue() {
+	      return this.comboBox.getValue();
+	    }
+	  }]);
+
+	  return ProjectTypeComboBox;
+	}();
+
+	exports.default = ProjectTypeComboBox;
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _Utils = __webpack_require__(3);
+
 	var _Button = __webpack_require__(8);
 
 	var _Button2 = _interopRequireDefault(_Button);
@@ -1827,7 +1915,7 @@
 
 	var _Form2 = _interopRequireDefault(_Form);
 
-	var _EditWindow = __webpack_require__(21);
+	var _EditWindow = __webpack_require__(22);
 
 	var _EditWindow2 = _interopRequireDefault(_EditWindow);
 
@@ -1842,6 +1930,10 @@
 	var _Label = __webpack_require__(19);
 
 	var _Label2 = _interopRequireDefault(_Label);
+
+	var _ProjectTypeComboBox = __webpack_require__(20);
+
+	var _ProjectTypeComboBox2 = _interopRequireDefault(_ProjectTypeComboBox);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1860,6 +1952,7 @@
 
 	    var codeTextBox = new _TextBox2.default({ value: project.code, height: 25, width: '90%' });
 	    var nameTextBox = new _TextBox2.default({ value: project.name, height: 25, width: '90%' });
+	    var projectTypeComboBox = new _ProjectTypeComboBox2.default({ value: project.projectType, height: 80, width: '90%' });
 	    var descriptionTextBox = new _TextArea2.default({ value: project.description, height: 80, width: '92%' });
 
 	    var formItems = [{
@@ -1876,6 +1969,14 @@
 	      content: nameTextBox,
 	      validation: {
 	        type: 'TEXTBOX',
+	        rule: 'required'
+	      }
+	    }, {
+	      name: 'projectType',
+	      label: 'Type',
+	      content: projectTypeComboBox,
+	      validation: {
+	        type: 'COMBOBOX',
 	        rule: 'required'
 	      }
 	    }, {
@@ -1913,7 +2014,7 @@
 
 	    this.window = new _EditWindow2.default({
 	      width: 390,
-	      height: 250,
+	      height: 280,
 	      title: 'Edit Project',
 	      content: form,
 	      onSave: function onSave() {
@@ -1964,7 +2065,7 @@
 	exports.default = EditProjectWindow;
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2138,7 +2239,7 @@
 	exports.default = EditWindow;
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2167,7 +2268,7 @@
 
 	var _DataGrid2 = _interopRequireDefault(_DataGrid);
 
-	var _FileUpload = __webpack_require__(23);
+	var _FileUpload = __webpack_require__(24);
 
 	var _FileUpload2 = _interopRequireDefault(_FileUpload);
 
@@ -2175,7 +2276,7 @@
 
 	var _AddProjectWindow2 = _interopRequireDefault(_AddProjectWindow);
 
-	var _EditProjectWindow = __webpack_require__(20);
+	var _EditProjectWindow = __webpack_require__(21);
 
 	var _EditProjectWindow2 = _interopRequireDefault(_EditProjectWindow);
 
@@ -2308,7 +2409,7 @@
 	exports.default = ProjectProgressList;
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

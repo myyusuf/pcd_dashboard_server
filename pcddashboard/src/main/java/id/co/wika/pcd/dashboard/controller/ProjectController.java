@@ -52,6 +52,7 @@ public class ProjectController {
 		Project localProject = projectService.getByCode(code);
 		localProject.setName(project.getName());
 		localProject.setDescription(project.getDescription());
+		localProject.setProjectType(project.getProjectType());
 		projectService.update(localProject);
 		
         return ResponseHelper.responseSuccess();

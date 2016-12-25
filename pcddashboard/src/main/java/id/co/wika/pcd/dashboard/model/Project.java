@@ -23,6 +23,8 @@ public class Project {
 	@NotNull
 	private String description;
 
+	private int projectType;
+	
 	public long getId() {
 		return id;
 	}
@@ -53,6 +55,14 @@ public class Project {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getProjectType() {
+		return projectType;
+	}
+
+	public void setProjectType(int projectType) {
+		this.projectType = projectType;
 	}
 	
 }
