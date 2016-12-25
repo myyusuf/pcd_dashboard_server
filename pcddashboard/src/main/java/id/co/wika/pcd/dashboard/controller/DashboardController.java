@@ -21,13 +21,35 @@ public class DashboardController {
     DashboardDto list() {
 		
 		DashboardDto dashboardDto = new DashboardDto();
-		DashboardItemDto data1 = new DashboardItemDto();
-		data1.setOk(new BigDecimal("118.19"));
-		data1.setOp(new BigDecimal("0.00"));
-		data1.setLsp(new BigDecimal("1.82"));
+		DashboardItemDto data = new DashboardItemDto();
+		data.setTitle("Realisasi");
+		data.setOk(new BigDecimal("118.19"));
+		data.setOp(new BigDecimal("0.00"));
+		data.setLsp(new BigDecimal("2.82"));
+		dashboardDto.setData1(data);
 		
-		dashboardDto.setData1(data1);
+		data = new DashboardItemDto();
+		data.setTitle("RKAP");
+		data.setOk(new BigDecimal("3287.40"));
+		data.setOp(new BigDecimal("962.06"));
+		data.setLsp(new BigDecimal("10.90"));
+		dashboardDto.setData2(data);
 		
+		data = new DashboardItemDto();
+		data.setTitle("Prog");
+		data.setOk(new BigDecimal("1338.96"));
+		data.setOp(new BigDecimal("19.15"));
+		data.setLsp(new BigDecimal("17.34"));
+		dashboardDto.setData3(data);
+		
+		data = new DashboardItemDto();
+		data.setTitle("SISA");
+		data.setOk(new BigDecimal("1457.15"));
+		data.setOp(new BigDecimal("19.15"));
+		data.setLsp(new BigDecimal("-15.52"));
+		dashboardDto.setData4(data);
+		
+		System.out.println("dasboard...");
         return dashboardDto;
     }
 

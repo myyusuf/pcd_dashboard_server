@@ -4,11 +4,12 @@ import java.math.BigDecimal;
 
 public class DashboardItemDto {
 
+	private String title;
 	private BigDecimal ok;
 	private BigDecimal op;
 	private BigDecimal lsp;
 	private BigDecimal lk;
-
+	
 	public BigDecimal getOk() {
 		return ok;
 	}
@@ -39,6 +40,14 @@ public class DashboardItemDto {
 
 	public void setLk(BigDecimal lk) {
 		this.lk = lk;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }
