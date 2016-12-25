@@ -71,6 +71,15 @@ public class ProjectProgressDao {
     entityManager.merge(projectProgress);
     return;
   }
+  
+  @SuppressWarnings("unchecked")
+  public List<ProjectProgress> selectAllByMonthAndYear(int month, int year) {
+	return entityManager.createQuery(
+	        "from ProjectProgress where month = :month and year = :year")
+	    	.setParameter("month", month)
+	        .setParameter("year", year)
+	        .getResultList();
+  }
 
   // ------------------------
   // PRIVATE FIELDS

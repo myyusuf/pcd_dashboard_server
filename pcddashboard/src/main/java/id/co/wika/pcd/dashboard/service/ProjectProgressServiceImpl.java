@@ -41,4 +41,9 @@ public class ProjectProgressServiceImpl implements ProjectProgressService {
 		projectProgressDao.update(projectProgress);
 	}
 
+	@Override
+	public List<ProjectProgress> selectAllByMonthAndYear(int month, int year) {
+		return projectProgressDao.selectAllByMonthAndYear(month, year);
+	}
+
 }

@@ -1051,6 +1051,26 @@
 	        return data;
 	      };
 
+	      var cellsrenderer = function cellsrenderer(row, columnfield, value, defaulthtml, columnproperties) {
+	        var projectTypeDescription = "";
+
+	        if (value == 1) {
+	          projectTypeDescription = "Proyek Lama Non JO/Non KSO";
+	        } else if (value == 2) {
+	          projectTypeDescription = "Proyek Lama JO/KSO";
+	        } else if (value == 3) {
+	          projectTypeDescription = "Proyek Baru Sudah Diperoleh Non JO/Non KSO";
+	        } else if (value == 4) {
+	          projectTypeDescription = "Proyek Baru Sudah Diperoleh JO/KSO";
+	        } else if (value == 5) {
+	          projectTypeDescription = "Proyek Baru Dalam Pengusahaan Non JO/Non KSO";
+	        } else if (value == 6) {
+	          projectTypeDescription = "Proyek Baru Dalam Pengusahaan JO/KSO";
+	        }
+
+	        return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + ';">' + projectTypeDescription + '</span>';
+	      };
+
 	      var dataGridOptions = {
 	        width: '100%',
 	        height: '100%',
@@ -1061,7 +1081,7 @@
 	        rendergridrows: function rendergridrows(params) {
 	          return params.data;
 	        },
-	        columns: [{ text: 'Kode', datafield: 'code', width: '33.33%' }, { text: 'Nama', datafield: 'name', width: '33.33%' }, { text: 'Deskripsi', datafield: 'description', width: '33.33%' }],
+	        columns: [{ text: 'Kode', datafield: 'code', width: '20%' }, { text: 'Nama', datafield: 'name', width: '20%' }, { text: 'Tipe', datafield: 'projectType', cellsrenderer: cellsrenderer, width: '30%' }, { text: 'Deskripsi', datafield: 'description', width: '30%' }],
 	        groups: []
 	      };
 
@@ -1291,8 +1311,8 @@
 
 	    var codeTextBox = new _TextBox2.default({ height: 25, width: '90%' });
 	    var nameTextBox = new _TextBox2.default({ height: 25, width: '90%' });
-	    var projectTypeComboBox = new _ProjectTypeComboBox2.default({ height: 25, width: '80%' });
-	    var descriptionTextBox = new _TextArea2.default({ height: 80, width: '92%' });
+	    var projectTypeComboBox = new _ProjectTypeComboBox2.default({ height: 25, width: '92.5%' });
+	    var descriptionTextBox = new _TextArea2.default({ height: 80, width: '92.5%' });
 
 	    var formItems = [{
 	      name: 'code',
@@ -1848,12 +1868,12 @@
 
 	    this.id = (0, _Utils.guid)();
 
-	    var typeList = [{ id: '1', nama: 'Proyek Lama Non JO/Non KSO' }, { id: '2', nama: "Proyek Lama JO/KSO" }, { id: '3', nama: "Proyek Baru Sudah Diperoleh Non JO/Non KSO" }, { id: '4', nama: "Proyek Baru Sudah Diperoleh JO/KSO" }, { id: '5', nama: "Proyek Baru Dalam Pengusahaan Non JO/Non KSO" }, { id: '6', nama: "Proyek Baru Dalam Pengusahaan JO/KSO" }];
+	    var typeList = [{ id: '1', nama: "Proyek Lama Non JO/Non KSO" }, { id: '2', nama: "Proyek Lama JO/KSO" }, { id: '3', nama: "Proyek Baru Sudah Diperoleh Non JO/Non KSO" }, { id: '4', nama: "Proyek Baru Sudah Diperoleh JO/KSO" }, { id: '5', nama: "Proyek Baru Dalam Pengusahaan Non JO/Non KSO" }, { id: '6', nama: "Proyek Baru Dalam Pengusahaan JO/KSO" }];
 	    var comboBoxOptions = {
 	      displayMember: "nama",
 	      valueMember: "id",
 	      selectedIndex: 0,
-	      width: '100%',
+	      width: options.width,
 	      height: 25,
 	      theme: 'metro',
 	      selectionMode: 'dropDownList'
@@ -1952,8 +1972,8 @@
 
 	    var codeTextBox = new _TextBox2.default({ value: project.code, height: 25, width: '90%' });
 	    var nameTextBox = new _TextBox2.default({ value: project.name, height: 25, width: '90%' });
-	    var projectTypeComboBox = new _ProjectTypeComboBox2.default({ value: project.projectType, height: 80, width: '90%' });
-	    var descriptionTextBox = new _TextArea2.default({ value: project.description, height: 80, width: '92%' });
+	    var projectTypeComboBox = new _ProjectTypeComboBox2.default({ value: project.projectType, height: 80, width: '92.5%' });
+	    var descriptionTextBox = new _TextArea2.default({ value: project.description, height: 80, width: '92.5%' });
 
 	    var formItems = [{
 	      name: 'code',

@@ -9,4 +9,5 @@ public interface ProjectProgressService {
 	void update(ProjectProgress projectProgress);
 	List<ProjectProgress> list();
 	ProjectProgress getByCodeMonthYear(String code, int month, int year);
+	List<ProjectProgress> selectAllByMonthAndYear(int month, int year);
 }
