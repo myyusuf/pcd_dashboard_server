@@ -38,7 +38,7 @@ public class ProjectController {
 	@RequestMapping(value="/projects")
     @ResponseBody
     ResponseDto<Project> list() {
-		List<Project> list = projectService.list();
+		List<Project> list = projectService.findAll();
 		ResponseDto<Project> response = new ResponseDto<Project>();
 		response.setData(list);
 		response.setTotalRecords(list.size());
@@ -62,8 +62,7 @@ public class ProjectController {
     @ResponseBody 
     Map<String, String> delete(@PathVariable("code") String code) {
 		
-		Project project = projectService.getByCode(code);
-		projectService.delete(project);
+		projectService.delete(code);
 		
         return ResponseHelper.responseSuccess();
     }

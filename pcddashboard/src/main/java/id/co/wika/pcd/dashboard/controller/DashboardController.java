@@ -63,7 +63,7 @@ public class DashboardController {
 	private DashboardItemDto getData1Values(){
 		
 		List<ProjectProgress> projectProgressList = projectProgressService
-				.selectAllByMonthAndYear(1, 2016);
+				.findByMonthAndYear(1, 2016);
 		BigDecimal totalOk = new BigDecimal("0.0");
 		BigDecimal totalOp = new BigDecimal("0.0");
 		BigDecimal totalLsp = new BigDecimal("0.0");

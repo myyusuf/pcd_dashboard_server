@@ -14,12 +14,12 @@ import id.co.wika.pcd.dashboard.service.DashboardService;
 @ComponentScan({"id.co.wika.pcd.dashboard"})
 public class MainController {
 	
-	@Autowired
-	private DashboardService dashboardServiceService;
+//	@Autowired
+//	private DashboardService dashboardServiceService;
 	
 	@RequestMapping("/")
     @ResponseBody
     String home() {
-        return "Info : " + dashboardServiceService.getInfo();
+        return "Info : ";// + dashboardServiceService.getInfo();
     }
 }

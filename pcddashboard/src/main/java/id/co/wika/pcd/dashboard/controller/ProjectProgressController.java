@@ -45,7 +45,7 @@ public class ProjectProgressController {
 	@RequestMapping(value="/project_progress")
     @ResponseBody
     ResponseDto<ProjectProgress> list() {
-		List<ProjectProgress> list = projectProgressService.list();
+		List<ProjectProgress> list = projectProgressService.findAll();
 		ResponseDto<ProjectProgress> response = new ResponseDto<ProjectProgress>();
 		response.setData(list);
 		response.setTotalRecords(list.size());
@@ -67,8 +67,8 @@ public class ProjectProgressController {
 //			dir.mkdirs();
 
 		// Create the file on server
-//		String filePath = "/Users/myyusuf/Documents/Test/pcd_data/dpe_input.xlsx";
-		String filePath = "/var/dpe_dashboard/dpe_data/dpe_input.xlsx";
+		String filePath = "/Users/myyusuf/Documents/Test/pcd_data/dpe_input.xlsx";
+//		String filePath = "/var/dpe_dashboard/dpe_data/dpe_input.xlsx";
 		
 		File serverFile = new File(filePath);
 		if(!serverFile.exists()){
@@ -209,7 +209,7 @@ public class ProjectProgressController {
 //									);
 							Project project = projectService.getByCode(projectCode);
 							if(project != null){
-								ProjectProgress projectProgress = projectProgressService.getByCodeMonthYear(projectCode, month, YEAR);
+								ProjectProgress projectProgress = projectProgressService.findByCodeMonthYear(projectCode, month, YEAR);
 								if(projectProgress != null){
 									projectProgress.setRkapOk(rkapOk);
 									projectProgress.setRkapOp(rkapOp);

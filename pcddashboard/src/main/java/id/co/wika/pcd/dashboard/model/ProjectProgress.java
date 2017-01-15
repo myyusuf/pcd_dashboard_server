@@ -2,22 +2,10 @@ package id.co.wika.pcd.dashboard.model;
 
 import java.math.BigDecimal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "project_progress")
 public class ProjectProgress {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-	@ManyToOne
+	
 	private Project project;
 
 	private int month;

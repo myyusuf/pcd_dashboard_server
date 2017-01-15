@@ -1,7 +1,17 @@
 package id.co.wika.pcd.dashboard.service;
 
-public interface DashboardService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class DashboardService {
 	
-	String getInfo();
+//	@Autowired
+//	private UserDao userDao;
+//
+//	@Override
+//	public String getInfo() {
+//		int count = userDao.getAll().size();
+//		return "PCD Dashboard : " + count;
+//	}
 
 }
