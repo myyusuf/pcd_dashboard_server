@@ -38,7 +38,7 @@ public interface ProjectMapper {
 	@Insert("INSERT into project(code, name, description, project_type) VALUES(#{code}, #{name}, #{description}, #{projectType})")
 	void create(Project project);
 	
-	@Update("UPDATE project SET name=#{name}, description=#{descrition}, project_type=#{projectType} WHERE code = #{code}")
+	@Update("UPDATE project SET name=#{name}, description=#{description}, project_type=#{projectType} WHERE code = #{code}")
 	void update(Project project);
 	
 	@Delete("DELETE FROM project WHERE code = #{code}")
