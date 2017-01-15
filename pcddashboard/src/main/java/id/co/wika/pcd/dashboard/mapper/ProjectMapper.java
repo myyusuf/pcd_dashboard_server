@@ -19,6 +19,13 @@ public interface ProjectMapper {
 	@Results({
         @Result(property = "projectType", column = "project_type")
       })
+	@Select("SELECT * FROM project WHERE id = #{id}")
+    Project findById(@Param("id") int id);
+	
+	
+	@Results({
+        @Result(property = "projectType", column = "project_type")
+      })
 	@Select("SELECT * FROM project WHERE code = #{code}")
     Project findByCode(@Param("code") String code);
 	
