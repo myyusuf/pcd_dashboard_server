@@ -27,6 +27,8 @@ public class ProjectProgressService{
 		try{
 			projectProgress = projectProgressMapper.findByCodeMonthYear(code, month, year);
 		}catch(Exception e){
+			System.out.println("CODE ERROR : " + code);
+			e.printStackTrace();
 			System.out.println("Project progress not found");
 		}
 				
