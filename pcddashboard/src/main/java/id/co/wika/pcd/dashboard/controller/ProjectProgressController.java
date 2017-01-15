@@ -17,6 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,6 +42,9 @@ public class ProjectProgressController {
 	
 	@Autowired
 	private ProjectService projectService;
+	
+	@Autowired
+	private Environment env;
 	
 	@RequestMapping(value="/project_progress")
     @ResponseBody
@@ -67,7 +71,8 @@ public class ProjectProgressController {
 //			dir.mkdirs();
 
 		// Create the file on server
-		String filePath = "/Users/myyusuf/Documents/Test/pcd_data/dpe_input.xlsx";
+		String filePath = env.getProperty("dpe.excel-temp-file");
+//		String filePath = "/Users/myyusuf/Documents/Test/pcd_data/dpe_input.xlsx";
 //		String filePath = "/var/dpe_dashboard/dpe_data/dpe_input.xlsx";
 		
 		File serverFile = new File(filePath);
